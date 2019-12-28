@@ -121,7 +121,5 @@ function getCTFTeamById(id){
 	specificTeamMap['rating_points_0']=getRating[ratingObjectKeys].rating_points; // getting the rating points of the CTF team
 	specificTeamMap['rating_place_0']=getRating[ratingObjectKeys].rating_place; // getting the rating place of the CTF team
 	specificTeamMap['image_path_0']=GettingCTFTeamIcon(id); // getting the image of the team.
-	console.log(specificTeamMap);
 	return specificTeamMap;
 }
-getCTFTeamById(1005);
