@@ -29,7 +29,8 @@ function getUpcommingCTF(){
 	*/
 	let upCTFinfo=['start','finish','duration','title','logo','format','id','participants','description']; // These are the informations we want from the API.
 	let getUpcomming=httpGet("https://ctftime.org/api/v1/events/?limit=5&start="+nowTimeStamp+"");
-	let jsonFormat=JSON.parse(getUpcomming.replace(/<\/?[^>]+(>|$)/g, "")); // make the json.
+	let jsonFormat=JSON.parse((getUpcomming.replace(/<b[^>]*>/g, '**')).replace(/<i[^>]*>/g, '__')); // make the json.	
+	console.log(jsonFormat);
 	let upCTFMapInfo={};
 	let eventsToShow=5;
 	// Getting data.
