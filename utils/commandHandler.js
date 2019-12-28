@@ -4,7 +4,7 @@ const fs = require("fs");
 
 module.exports.run = function (bot, folderpath) {
 fs.readdir(`${folderpath}`,(err, files) => {
-  console.log(files)
+  //console.log(files)
     if(err) console.log(err);
   
     let jsfile = files.filter(f => f.split(".").pop() === "js")
@@ -25,8 +25,8 @@ fs.readdir(`${folderpath}`,(err, files) => {
         bot.aliases.set(alias, props.help.name);
         });
       });
-    
+      console.log(`All Commands Loaded Successfully\n`);
     });
-    console.log(`All Commands Loaded Successfully\n\n`);
+    
 
 }

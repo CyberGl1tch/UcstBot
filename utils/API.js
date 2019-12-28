@@ -3,6 +3,9 @@
 // npm install xmlhttprequest
 const request=require("xmlhttprequest");
 const nowTimeStamp=Date.now();
+
+module.exports.getUpcommingCTF = getUpcommingCTF
+
 function httpGet(URL)
 {
 	/*
@@ -49,12 +52,12 @@ function getUpcommingCTF(){
 		the upcoming CTFs events.
 		The information is given by the API: https://ctftime.org/api/
 	*/
-	let upCTFinfo=['start','finish','duration','title','logo','format','id','participants','description']; // These are the informations we want from the API.
+	let upCTFinfo=['start','finish','duration','title','logo','format','id','participants','description','ctftime_url']; // These are the informations we want from the API.
 	let getUpcomming=httpGet("https://ctftime.org/api/v1/events/?limit=5&start="+nowTimeStamp+"");
 	let jsonFormat=JSON.parse((getUpcomming.replace(/<b[^>]*>/g, '')).replace(/<i[^>]*>/g, '__')); // make the json.	
 	let eventsToShow=5; // how many events to show
 	let upMap=informationsAboutCTF(upCTFinfo,jsonFormat,eventsToShow); // call the function to get the informations about CTF events
-	console.log(upMap);
+	return upMap;
 }
 function topCTFTeams(year){
 	/*

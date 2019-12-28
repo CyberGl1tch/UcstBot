@@ -21,7 +21,7 @@ fs.readdir(`${folderpath}`, (err, files) => {
      i = i+1 
        bot.events.set(props1.run(bot), props1);
    });
-     console.log(`All Events Loaded Successfully`);
+     console.log(`All Events Loaded Successfully\n`);
 });;
 
 
