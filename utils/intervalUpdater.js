@@ -9,7 +9,7 @@ module.exports.run = function (bot) {
     setInterval(async function() {
         for (var id in messages) {
             if(messages[id].hasOwnProperty('channelID') && messages[id].channelID != "" && messages[id].reason === 'interval'){
-                let arg = id;
+                let arg = 4-id;
                 let ctfmap = ctf.getUpcommingCTF();
                 let moreinfo = bot.emojis.get(emojis.moreinfo)
                 //console.log(ctfmap[`start_0`])
@@ -21,7 +21,9 @@ module.exports.run = function (bot) {
                     .setThumbnail(`${ctfmap[`logo_${arg}`] ? ctfmap[`logo_${arg}`] : botconfig.error }`)
                     .setFooter(`Last Update: ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getUTCSeconds()}`)
                     let cyclemsg = await bot.channels.get(messages[id].channelID).fetchMessage(messages[id].messageID)
+                  //  cyclemsg.edit("hey")
                     cyclemsg.edit(cyclectf)
+                    console.log(`${ctfmap[`title_${arg}`]}`)
 
             }
         }

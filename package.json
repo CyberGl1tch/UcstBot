@@ -1,0 +1,22 @@
+{
+  "name": "CyberSecurity",
+  "version": "0.0.1",
+  "description": "CyberSecurity Bot Alpha",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "discordbot"
+  ],
+  "author": "Cyb3r6host",
+  "license": "Public",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^11.5.1",
+    "fs": "^0.0.1-security",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
