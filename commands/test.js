@@ -3,7 +3,7 @@ const botconfig = require("../configs/botconfig.json");
 const emojis = require("../configs/emojis.json");
 const ctf = require("../utils/API.js");
 const letterid = require(`../configs/letters.json`);
-const toemojis = require(`../utils/toemojis.js`)
+const toemojis = require(`../utils/toEmojis.js`)
 
 
 

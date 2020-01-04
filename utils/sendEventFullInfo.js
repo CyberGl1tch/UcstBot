@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const botconfig = require("../configs/botconfig.json");
 const ctf = require("../utils/API.js");
 const time = require("../utils/time.js");
-const toemojis = require(`./toemojis.js`)
+const toemojis = require(`./toEmojis.js`)
 
 
 

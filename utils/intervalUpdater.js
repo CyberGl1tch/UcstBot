@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const botconfig = require("../configs/botconfig.json");
 const emojis = require("../configs/emojis.json");
 const ctf = require("../utils/API.js");
-const toemojis = require(`./toemojis.js`)
+const toemojis = require(`./toEmojis.js`)
 const messages = require(`../configs/toFetchMessages`)
 
 module.exports.run = function (bot) {
