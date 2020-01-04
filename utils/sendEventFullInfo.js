@@ -10,7 +10,7 @@ function sendFullInfo(bot,arg,user){
 
     let ctfmap = ctf.getUpcommingCTF();
 
-
+    arg = 4-arg
     var newDate = new Date();
     let title = toemojis.run(bot,"Ctf Time Info")
     let ctfinfo = new Discord.RichEmbed()

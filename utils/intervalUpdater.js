@@ -23,7 +23,7 @@ module.exports.run = function (bot) {
                     let cyclemsg = await bot.channels.get(messages[id].channelID).fetchMessage(messages[id].messageID)
                   //  cyclemsg.edit("hey")
                     cyclemsg.edit(cyclectf)
-                    console.log(`${ctfmap[`title_${arg}`]}`)
+                    console.log(`${ctfmap[`title_${arg}`]} --- ${arg}`)
 
             }
         }
