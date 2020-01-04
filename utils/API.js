@@ -25,7 +25,7 @@ function httpGet(URL)
 		return false;
 	}
 }
-function informationsAboutCTF(ctfInfos,json,infoToShow){
+function informationsAboutCTF(ctfInfos,json,infoToShow,expectetion=false){
 	/*
 		This function get's
 		1) One list that includes the information we want from the API
@@ -42,7 +42,12 @@ function informationsAboutCTF(ctfInfos,json,infoToShow){
 			// Getting one by one all the informations
 			for (let info=0;info<informationCTFList.length;info++){
 				// We add  all the informations about the CTF's to map variable
-				informationMap[`${informationCTFList[info]}_${specificCTF}`]=jsonFormat[informationCTFList[info]];
+				if (expectetion==false){
+					informationMap[`${informationCTFList[info]}_${specificCTF}`]=jsonFormat[specificCTF][informationCTFList[info]];
+				}
+				else {
+					informationMap[`${informationCTFList[info]}_${specificCTF}`]=jsonFormat[informationCTFList[info]];
+				}
 			}
 	}
 	return informationMap; // returns the map variable
@@ -58,7 +63,8 @@ function getUpcommingCTF(){
 	let getUpcomming=httpGet("https://ctftime.org/api/v1/events/?limit=5&start="+nowTimeStamp+"");
 	let jsonFormat=JSON.parse((getUpcomming.replace(/<b[^>]*>/g,'')).replace(/<i[^>]*>/g, '__')); // make the json.	
 	let eventsToShow=5; // how many events to show
-	let upcommingMap=informationsAboutCTF(upcommingCTFinfo,jsonFormat[0],eventsToShow); // call the function to get the informations about CTF events
+	let upcommingMap=informationsAboutCTF(upcommingCTFinfo,jsonFormat,eventsToShow); // call the function to get the informations about CTF events
+	console.log(upcommingMap);
 	return upcommingMap;
 }
 function topCTFTeams(year){
@@ -74,7 +80,7 @@ function topCTFTeams(year){
 	let jsonFormat=JSON.parse(getTopTeams); // make the json.
 	let ctfYear=jsonFormat[year];
 	let teamToShow=10;
-	let topTeamMap=informationsAboutCTF(teamTopTeamInfos,ctfYear[0],teamToShow);
+	let topTeamMap=informationsAboutCTF(teamTopTeamInfos,ctfYear,teamToShow);
 	return topTeamMap;
 }
 function GettingCTFTeamIcon(id){
@@ -111,15 +117,23 @@ function getCTFTeamById(id){
 		who has this id.
 		The information is given by the API: https://ctftime.org/api/
 	*/
-	let specificTeamInfos=['name','country','academic','id','aliases']; // there is the informations we want.
-	let getSpecificTeamInfos=httpGet("https://ctftime.org/api/v1/teams/"+id+"/"); // get the informations based on id
-	let jsonFormat=JSON.parse(getSpecificTeamInfos); // make the json
-	let specificTeam=1;
-	let specificTeamMap=informationsAboutCTF(specificTeamInfos,jsonFormat,specificTeam); // getting the informations
-	let getRating=jsonFormat.rating[0];
-	let ratingObjectKeys=Object.keys(getRating)[0]; // getting the keys of the object ratting, in our case the return is year.
-	specificTeamMap['rating_points_0']=getRating[ratingObjectKeys].rating_points; // getting the rating points of the CTF team
-	specificTeamMap['rating_place_0']=getRating[ratingObjectKeys].rating_place; // getting the rating place of the CTF team
-	specificTeamMap['image_path_0']=GettingCTFTeamIcon(id); // getting the image of the team.
-	return specificTeamMap;
+	try {
+		let specificTeamInfos=['name','country','academic','id','aliases']; // there is the informations we want.
+		let getSpecificTeamInfos=httpGet("https://ctftime.org/api/v1/teams/"+id+"/"); // get the informations based on id
+		let jsonFormat=JSON.parse(getSpecificTeamInfos); // make the json
+		let specificTeam=1;
+		let specificTeamMap=informationsAboutCTF(specificTeamInfos,jsonFormat,specificTeam,true); // getting the informations
+		let getRating=jsonFormat.rating[0];
+		let ratingObjectKeys=Object.keys(getRating)[0]; // getting the keys of the object ratting, in our case the return is year.
+		specificTeamMap['rating_points_0']=getRating[ratingObjectKeys].rating_points; // getting the rating points of the CTF team
+		specificTeamMap['rating_place_0']=getRating[ratingObjectKeys].rating_place; // getting the rating place of the CTF team
+		specificTeamMap['image_path_0']=GettingCTFTeamIcon(id); // getting the image of the team.
+		console.log(specificTeamMap);
+		return specificTeamMap;
+	}
+	catch(e) {
+		let error={};
+		error['error']="Id not found";
+		return error;
+	}
 }
