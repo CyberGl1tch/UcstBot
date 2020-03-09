@@ -5,11 +5,9 @@
 const request=require("xmlhttprequest");
 const cheerio=require('cheerio');
 const nowTimeStamp=Date.now();
-
 module.exports.getUpcommingCTF=getUpcommingCTF;
 
-function httpGet(URL)
-{
+function httpGet(URL){
 	/*
 		This function makes a get
 		request to a specific	
@@ -22,7 +20,7 @@ function httpGet(URL)
     	return xmlHttp.responseText; // return the content of the API
     }
     catch(e){
-		return false;
+		  return false;
 	}
 }
 function informationsAboutCTF(ctfInfos,json,infoToShow,expectetion=false){
@@ -64,7 +62,7 @@ function getUpcommingCTF(){
 	let jsonFormat=JSON.parse((getUpcomming.replace(/<b[^>]*>/g,'')).replace(/<i[^>]*>/g, '__')); // make the json.	
 	let eventsToShow=5; // how many events to show
 	let upcommingMap=informationsAboutCTF(upcommingCTFinfo,jsonFormat,eventsToShow); // call the function to get the informations about CTF events
-	//console.log(upcommingMap);
+	console.log(upcommingMap);
 	return upcommingMap;
 }
 function topCTFTeams(year){
@@ -128,7 +126,7 @@ function getCTFTeamById(id){
 		specificTeamMap['rating_points_0']=getRating[ratingObjectKeys].rating_points; // getting the rating points of the CTF team
 		specificTeamMap['rating_place_0']=getRating[ratingObjectKeys].rating_place; // getting the rating place of the CTF team
 		specificTeamMap['image_path_0']=GettingCTFTeamIcon(id); // getting the image of the team.
-		//console.log(specificTeamMap);
+		console.log(specificTeamMap);
 		return specificTeamMap;
 	}
 	catch(e) {
@@ -136,4 +134,26 @@ function getCTFTeamById(id){
 		error['error']="Id not found";
 		return error;
 	}
+}
+
+function isSiteOnline(){
+    /*
+        This function returns
+        boolean data type
+        and check if the website
+        is up or down.
+    */
+    let state=httpGet("https://ctftime.org");
+    if (!state) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function GetLatestEvent(){
+    /*
+        to do.
+    */    
 }
