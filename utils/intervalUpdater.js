@@ -7,6 +7,11 @@ const messages = require(`../configs/toFetchMessages`)
 
 module.exports.run = function (bot) {
     setInterval(async function() {
+        let isOnline = ctf.isSiteOnline();
+        if(!isOnline){
+            return;
+            console.log("Site is Down")
+        }
         for (var id in messages) {
             if(messages[id].hasOwnProperty('channelID') && messages[id].channelID != "" && messages[id].reason === 'interval'){
                 let arg = 4-id;
@@ -23,7 +28,7 @@ module.exports.run = function (bot) {
                     let cyclemsg = await bot.channels.get(messages[id].channelID).fetchMessage(messages[id].messageID)
                   //  cyclemsg.edit("hey")
                     cyclemsg.edit(cyclectf)
-                   // console.log(`${ctfmap[`title_${arg}`]} --- ${arg}`)
+                    console.log(`Up-Dated`)
 
             }
         }

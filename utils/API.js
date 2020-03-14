@@ -62,7 +62,7 @@ function getUpcommingCTF(){
 	let jsonFormat=JSON.parse((getUpcomming.replace(/<b[^>]*>/g,'')).replace(/<i[^>]*>/g, '__')); // make the json.	
 	let eventsToShow=5; // how many events to show
 	let upcommingMap=informationsAboutCTF(upcommingCTFinfo,jsonFormat,eventsToShow); // call the function to get the informations about CTF events
-	console.log(upcommingMap);
+	//console.log(upcommingMap);
 	return upcommingMap;
 }
 function topCTFTeams(year){
@@ -126,7 +126,7 @@ function getCTFTeamById(id){
 		specificTeamMap['rating_points_0']=getRating[ratingObjectKeys].rating_points; // getting the rating points of the CTF team
 		specificTeamMap['rating_place_0']=getRating[ratingObjectKeys].rating_place; // getting the rating place of the CTF team
 		specificTeamMap['image_path_0']=GettingCTFTeamIcon(id); // getting the image of the team.
-		console.log(specificTeamMap);
+		//console.log(specificTeamMap);
 		return specificTeamMap;
 	}
 	catch(e) {

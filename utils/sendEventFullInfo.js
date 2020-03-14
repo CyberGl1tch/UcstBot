@@ -9,6 +9,11 @@ const toemojis = require(`./toEmojis.js`)
 function sendFullInfo(bot,arg,user){
 
     let ctfmap = ctf.getUpcommingCTF();
+    let isOnline = ctf.isSiteOnline();
+    if(!isOnline){
+        return;
+        console.log("Site is Down")
+    }
 
     arg = 4-arg
     var newDate = new Date();
