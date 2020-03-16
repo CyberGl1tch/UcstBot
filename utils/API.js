@@ -7,6 +7,7 @@ const cheerio=require('cheerio');
 const nowTimeStamp=Date.now();
 module.exports.getUpcommingCTF=getUpcommingCTF;
 module.exports.isSiteOnline=isSiteOnline;
+module.exports.GetLatestEvent=GetLatestEvent;
 
 function httpGet(URL){
 	/*
