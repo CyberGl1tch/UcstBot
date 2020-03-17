@@ -5,13 +5,19 @@ const error = require(`../utils/error.js`);
 const fs = require("fs");
 
 /*
-    This command do 3 things:
+    This command is made for 3 things:
         1) update user points.
         2) check user points.
         3) create new user.
 */
 
 module.exports.run = async(bot,message,args) => {
+    
+    if(!message.member.hasPermission('ADMINISTRATOR')){
+        error.run(bot,"You dont have permission to use that!",message.channel)
+        return
+    } 
+    
     /*
         This block of code 
         communicate with 
@@ -20,7 +26,7 @@ module.exports.run = async(bot,message,args) => {
 
     if (args.length<3) {
         // This line returns an error.
-        error.run(bot,"Wrong usage of command!\n\n **@Usage: **!points <remove/add> <user> <pointamount> ",message.channel)
+        error.run(bot,"Wrong usage of command!\n\n **Usage: **!points <remove/add> <@user> <pointamount> ",message.channel)
         return
     }
     if (args[0].toLowerCase()=="remove" || args[0].toLowerCase()=="add") {
@@ -31,8 +37,12 @@ module.exports.run = async(bot,message,args) => {
             let pointValue=parseInt(args[2]); // point value.
             // getting the target.
             let target=message.guild.member(message.mentions.users.first() || bot.users.find(user => user.username === args[1]));
-            try {
-                if (!(pointsJSON.users[target.id])) {
+           if(!target){
+            error.run(bot,`User ${args[1]} is not in this server`,message.channel);
+            return
+           }
+           var action="";
+                if (!pointsJSON.users[target.id]) {
                     /*
                         Inside this statement we
                         create new user, because
@@ -41,24 +51,28 @@ module.exports.run = async(bot,message,args) => {
                     */
                     let value;
                     if (option=="add") {
+                        action = "received"
                         value=parseInt(args[2]);
                     }
                     else {
-                        value=0;
+                        error.run(bot,`This user have 0 points`,message.channel);
+                        return;
                     }
                     pointsJSON.users[target.id]={
-                        name : args[1],
+                        name : target.user.username,
                         points : value
                     }
+                   
                 }
                 else {
+                   
                     /*
                         Inside this statement we
                         do the add/remove.
                     */
                     let targetCurrentPoints=pointsJSON.users[target.id].points;
                     let targetNewPoints=0;
-                    //let action="";
+                    
                     if (option=="add") {
                         targetNewPoints=targetCurrentPoints+pointValue;
                         action="recieved";
@@ -71,9 +85,10 @@ module.exports.run = async(bot,message,args) => {
                             targetNewPoints=targetCurrentPoints-pointValue;
                         }
                         else {
+                            pointValue = targetCurrentPoints;
                             targetNewPoints=0;
                         }
-                        action="lose";
+                        action="lost";
                     }
                     pointsJSON.users[target.id].points=targetNewPoints;
                     
@@ -85,24 +100,18 @@ module.exports.run = async(bot,message,args) => {
                 // Send a complite messege.
                 let embedForm=new Discord.RichEmbed()
                     .setColor(botconfig.color)
-                    .setDescription('The user '+args[1]+" has "+action+" "+pointValue+" points");
+                    .setDescription(`**User __${args[1]}__  ${action} ${pointValue} points**`);
                 message.channel.send(embedForm);
-            }
-            catch(e) {
-                // this returns if the user is not in the server.
-                error.run(bot,"The user "+args[1]+" is not in this server",message.channel);
-                if(e) throw e;
-            }
         }
         else {
             // this returns if the user use string instead of number.
-            error.run(bot,"The point value must be a number!",message.channel)
+            error.run(bot,"The points amount must be a number!",message.channel)
             return
         }
     }
     else {
         // this returns if the user use less arguments.
-        error.run(bot,"This is not an option\n\n **@Usage: **!points <remove/add> <user> <pointamount>",message.channel)
+        error.run(bot,"This is not an option\n\n **Usage: **!points <remove/add> <@user> <pointamount>",message.channel)
         return
     }
 }

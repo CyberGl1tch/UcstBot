@@ -11,7 +11,6 @@ const notifysquad = require(`../configs/notifysquad.json`)
 module.exports.run = async (bot, message, args) => {
  for(var id in notifysquad){
      let memberToNotify = bot.users.get(id)
-     memberToNotify.send("kakaristikes")
      //console.log(bot.users.get(id).username)
  }
 
