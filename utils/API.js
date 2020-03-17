@@ -25,7 +25,7 @@ function httpGet(URL){
 		  return false;
 	}
 }
-function informationsAboutCTF(ctfInfos,json,infoToShow,expectetion=false){
+function informationsAboutCTF(ctfInfos,json,infoToShow,exception=false){
 	/*
 		This function get's
 		1) One list that includes the information we want from the API
@@ -42,7 +42,7 @@ function informationsAboutCTF(ctfInfos,json,infoToShow,expectetion=false){
 			// Getting one by one all the informations
 			for (let info=0;info<informationCTFList.length;info++){
 				// We add  all the informations about the CTF's to map variable
-				if (expectetion==false){
+				if (exception==false){
 					informationMap[`${informationCTFList[info]}_${specificCTF}`]=jsonFormat[specificCTF][informationCTFList[info]];
 				}
 				else {
@@ -55,7 +55,7 @@ function informationsAboutCTF(ctfInfos,json,infoToShow,expectetion=false){
 function getUpcommingCTF(){
 	/* 
 		This function returns
-		the informations about	
+		informations about	
 		the upcoming CTFs events.
 		The information is given by the API: https://ctftime.org/api/
 	*/
@@ -163,5 +163,5 @@ function GetLatestEvent(){
     let getLastEvent=httpGet("https://ctftime.org/api/v1/events/?limit=5&start="+nowTimeStamp+"");
     let jsonFormat=JSON.parse((getLastEvent.replace(/<b[^>]*>/g,'')).replace(/<i[^>]*>/g, '__')); // make the json. 
     let LatestEventMap=informationsAboutCTF(LatsetEventInfo,jsonFormat[4],1,true); // call the function to get the informations about CTF events
-    return LatestEventMap;    
+    return LatestEventMap;
 }
