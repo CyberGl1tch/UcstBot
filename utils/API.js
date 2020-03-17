@@ -7,7 +7,7 @@ const cheerio=require('cheerio');
 const nowTimeStamp=Date.now();
 module.exports.getUpcommingCTF=getUpcommingCTF;
 module.exports.isSiteOnline=isSiteOnline;
-module.exports.GetLatestEvent=GetLatestEvent;
+module.exports.GetLatestCTF=GetLatestEvent;
 
 function httpGet(URL){
 	/*
@@ -159,7 +159,7 @@ function GetLatestEvent(){
         This function returns
         the latest event.
     */
-    let LatsetEventInfo=['start','finish','duration','title','logo','format','id','participants','description','ctftime_url']; // These are the informations we want from the API.
+    let LatsetEventInfo=['title']; // These are the informations we want from the API.
     let getLastEvent=httpGet("https://ctftime.org/api/v1/events/?limit=5&start="+nowTimeStamp+"");
     let jsonFormat=JSON.parse((getLastEvent.replace(/<b[^>]*>/g,'')).replace(/<i[^>]*>/g, '__')); // make the json. 
     let LatestEventMap=informationsAboutCTF(LatsetEventInfo,jsonFormat[4],1,true); // call the function to get the informations about CTF events
