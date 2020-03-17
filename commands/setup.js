@@ -8,6 +8,11 @@ const fetchmessages = require(`../configs/toFetchMessages.json`)
 const updater = require(`../utils/intervalUpdater.js`)
 
 module.exports.run = async (bot, message, args) => {
+      //Checking if bot has permission manage channels
+      if(!message.guild.me.hasPermission("MANAGE_CHANNELS") ||!message.guild.me.hasPermission("MANAGE_MESSAGES") ){
+        error.run(bot,"Lack of permissions ",message.channel)
+        return;
+    }
     message.delete(200);
     let moreinfo = bot.emojis.get(emojis.moreinfo)
     let loading = bot.emojis.get(emojis.loading)
@@ -26,11 +31,7 @@ module.exports.run = async (bot, message, args) => {
 
     
 
-    //Checking if bot has permission manage channels
-    if(!message.guild.me.hasPermission("MANAGE_CHANNELS")){
-        error.run(bot,"Lack of permission manage channels ",message.channel)
-        return;
-    }
+
     let tmp = message.guild.channels.find(c => c.name == channelsinfo.ctftimeCategory)
     if(tmp){
         error.run(bot,"Setup has already been initialized",message.channel)
