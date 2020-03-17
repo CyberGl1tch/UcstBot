@@ -70,7 +70,11 @@ module.exports.run = function (bot, options) {
                 if(reaction.message.id === messages[id].messageID){
                     if(messages[id].reason !== "interval") return;
                     reaction.remove(user)
+                    try{
                     ctf.sendFullInfo(bot,parseInt(id),user)
+                    }catch(e){
+                        
+                    }
 
                 }
                 
