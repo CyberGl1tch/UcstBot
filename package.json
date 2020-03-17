@@ -17,6 +17,7 @@
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.5.1",
     "fs": "^0.0.1-security",
+    "moment": "^2.24.0",
     "xmlhttprequest": "^1.8.0"
   }
 }

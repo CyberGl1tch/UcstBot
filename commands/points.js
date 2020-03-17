@@ -12,7 +12,6 @@ const fs = require("fs");
 */
 
 module.exports.run = async(bot,message,args) => {
-    
     if(!message.member.hasPermission('ADMINISTRATOR')){
         error.run(bot,"You dont have permission to use that!",message.channel)
         return

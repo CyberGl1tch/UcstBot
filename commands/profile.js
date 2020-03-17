@@ -10,6 +10,7 @@ const notifysquad = require(`../configs/notifysquad.json`)
 
 
 module.exports.run = async (bot, message, args) => {
+    message.delete(200)
     let target=message.guild.member(message.mentions.users.first() || bot.users.find(user => user.username === args[0]));
     let profile = new Discord.RichEmbed()
     .setColor(botconfig.color)

@@ -10,7 +10,7 @@ const updater = require(`../utils/intervalUpdater.js`)
 module.exports.run = async (bot, message, args) => {
       //Checking if bot has permission manage channels
       if(!message.guild.me.hasPermission("MANAGE_CHANNELS") ||!message.guild.me.hasPermission("MANAGE_MESSAGES") ){
-        error.run(bot,"Lack of permissions ",message.channel)
+        error.run(bot,"Lack of permission ",message.channel)
         return;
     }
     message.delete(200);

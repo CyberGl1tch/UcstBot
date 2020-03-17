@@ -17,17 +17,19 @@ bot.aliases = new Discord.Collection();
           return;
         
         }
+        
         let prefix = botconfig.prefix;
         let args = message.content.slice(prefix.length).trim().split(` `)
         let cmd = args.shift().toLowerCase()
         let commandfile
+        if(!message.content.startsWith(prefix)) return;
         if(bot.commands.has(cmd)){
           commandfile = bot.commands.get(cmd)
         }else{
           commandfile = bot.commands.get(bot.aliases.get(cmd))
         }
         if(commandfile) commandfile.run(bot,message,args,prefix);
-        if(!message.content.startsWith(prefix)) return;
+        
 
       });
 
