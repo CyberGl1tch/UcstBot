@@ -24,7 +24,7 @@ function sendFullInfo(bot,arg,user){
         .setThumbnail(`${ctfmap[`logo_${arg}`] ? ctfmap[`logo_${arg}`] : botconfig.error }`)
         .setFooter(`Last Update: ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getUTCSeconds()}`)
         try{ 
-             user.send(ctfinfo)
+           await  user.send(ctfinfo)
         }catch(e){
 
         }
