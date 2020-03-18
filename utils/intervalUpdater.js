@@ -6,6 +6,7 @@ const fs = require("fs");
 const toemojis = require(`./toEmojis.js`)
 const messages = require(`../configs/toFetchMessages`)
 const latest = require(`../configs/latestctf.json`)
+const time = require("../utils/time.js");
 const notifysquad = require(`../configs/notifysquad.json`)
 const fullinfo = require(`../utils/sendEventFullInfo.js`)
 module.exports.updateMessages = updateMessages;
@@ -45,7 +46,7 @@ async function updateMessages(bot){
                 .setDescription(`${title}\n\n \>\ **__Ctf Title__**\n\`${ctfmap[`title_${arg}`] ? ctfmap[`title_${arg}`] : "*No Title Presented*" }\`\n\n\>\ **__Ctf Description__**\n${ctfmap[`description_${arg}`] ? ctfmap[`description_${arg}`] : "*No Description presented*" }\n\n${moreinfo} If you want more info about this **__CTF Event__** React bellow ${moreinfo}`)
                 .setColor(botconfig.color)
                 .setThumbnail(`${ctfmap[`logo_${arg}`] ? ctfmap[`logo_${arg}`] : botconfig.error }`)
-                .setFooter(`Last Update: ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getUTCSeconds()}`)
+                .setFooter(`Last Update: ${time.EuropeTimeOnly()}`)
                 let tmpmsg = await bot.channels.get(messages[id].channelID)
                 if(!tmpmsg){
                     return;
