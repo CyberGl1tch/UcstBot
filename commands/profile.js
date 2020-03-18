@@ -12,9 +12,13 @@ const notifysquad = require(`../configs/notifysquad.json`)
 module.exports.run = async (bot, message, args) => {
     message.delete(200)
     let target=message.guild.member(message.mentions.users.first() || bot.users.find(user => user.username === args[0]));
+    if(!target){
+        error.run(bot,`User ${args[0]} is not in this server`,message.channel);
+        return
+    }
     let profile = new Discord.RichEmbed()
     .setColor(botconfig.color)
-    .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL}`)
+    .setAuthor(`${target.user.username}`,`${target.user.displayAvatarURL}`)
     .addField('User', target,true)
     .addField('Points ', getUserPoints(target),true)
     .addField('Joined Category', 'comming soon',true)

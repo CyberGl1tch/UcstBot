@@ -13,7 +13,8 @@ bot.aliases = new Discord.Collection();
     eventHandler.run(bot,"./events/")
       bot.on("message", async message => {
 
-        if (message.channel.type === 'dm' ){
+        if (message.channel.type === 'dm' || message.author.bot){
+      
           return;
         
         }
