@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp();
     let notifyembed = new Discord.RichEmbed()
     .setColor(botconfig.color)
-    .setDescription(`Hey! Want to get **Notified** when a new CTF challenge created!\n Come join our Discord Notification Squad!\n\n**Note: **Just react to the emoji below if you want to receive notifications!\nYou are able to __cancel__ notifications every time just react below again below!\n\n**You must have** \`Allow Direct Messages from server members\` **enabled**\nRight Click the __server icon__ > __Privacy Settings__ > __enable__`)
+    .setDescription(`Hey! Want to get **Notified** when a new CTF challenge created!\n Come join our Discord Notification Squad!\n\n**Note: **Just react to the emoji below if you want to receive notifications!\nYou are able to __cancel__ notifications every time just react again below!\n\n**You must have** \`Allow Direct Messages from server members\` **enabled**\nRight Click the __server icon__ > __Privacy Settings__ > __enable__`)
     .setFooter(botconfig.version)
     .setTimestamp();
 
