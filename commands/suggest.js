@@ -30,11 +30,12 @@ module.exports.run = async (bot, message, args) => {
         let tmpuser = await message.guild.members.get(usersToSendMessage[id]);
         try{
           await tmpuser.send(suggestionembed)
-          await message.channel.send(succeed)
+          
         }catch(e){
-
+            
         }
     }
+    await message.channel.send(succeed)
 }
 
 module.exports.help = {
