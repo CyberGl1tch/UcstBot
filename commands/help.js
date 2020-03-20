@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     .setColor(botconfig.color)
     .setTitle("Help Menu")
     .setDescription(`Current prefix: **${botconfig.prefix}**\n\n   ‍   ‍  ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍    ‍     ‍     ‍       ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍        ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍      ‍   ${emoji} **__Commands__** ${emoji}`)
-    .addField(`**User Commands**`, ` \`help\` \n \`serverinfo\` \n \`userinfo\`  \n \`botinfo\` \n \`suggest\`  \n Coming Soon..  `,true)
+    .addField(`**User Commands**`, ` \`help\` \n \`serverinfo\` \n \`userinfo\`  \n \`botinfo\` \n \`suggest\`\n \`profile\` \n \`ping\`  \n Coming Soon..  `,true)
     .addField(`**Administrator Commands**`, `\`announce\`  \n \`points\`  \n Coming Soon..`,true)
     .addField(`**Setup Commands**`, `\`setup\``,true)
     .setFooter(botconfig.version,botconfig.logo)
