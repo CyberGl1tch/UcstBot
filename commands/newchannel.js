@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
         error.run(bot,"Lack of permission ",message.channel)
         return;
     }
-    let parrent = await message.guild.channels.find(c=> c.name == args[0])
+    let parrent = await message.guild.channels.find(c=> c.name.toLowerCase() == args[0].toLowerCase())
     console.log(args[0])
     if(!parrent){
         error.run(bot,`Unknown Category **${args[0]}**\n\n **Usage: **!newchannel <category> <channelname> `,message.channel)
