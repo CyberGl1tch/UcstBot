@@ -14,7 +14,7 @@ module.exports.updateMessages = updateMessages;
 module.exports.run = function (bot) {
     setInterval(async function() {
         updateMessages(bot);
-    },3 *60 *1000) // Interval 1 minute
+    },15 *60 *1000) // Interval 15 minute
 
 
 
