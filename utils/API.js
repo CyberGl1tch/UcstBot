@@ -18,7 +18,8 @@ function httpGet(URL){
     var xmlHttp=new request.XMLHttpRequest();
     try{
     	xmlHttp.open("GET",URL,false); // false for synchronous request
-    	xmlHttp.send(null);
+		xmlHttp.send(null);
+		xmlHttp.timeout = 10*60*1000;
     	return xmlHttp.responseText; // return the content of the API
     }
     catch(e){
